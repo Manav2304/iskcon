@@ -93,9 +93,7 @@ export const DonationForm: React.FC<
     const existingScript = document.getElementById("razorpay-script");
 
     if (!existingScript) {
-      const res = await loadScript(
-        "https://checkout.razorpay.com/v1/checkout.js",
-      );
+      const res = await loadScript(process.env.RAZORPAY_LOAD_SCRIPT as string);
 
       if (!res) {
         alert("Razorpay SDK failed to load. Are you online?");
@@ -208,7 +206,7 @@ export const DonationForm: React.FC<
   const handleRazorpayAndSubmit = async () => {
     try {
       const responseRazorpay = await axios.post(
-        "https://87fb-103-39-130-94.ngrok-free.app/pay/",
+        process.env.RAZORPAY_RESPONSE as string,
         {
           name,
           email,
@@ -226,11 +224,8 @@ export const DonationForm: React.FC<
 
       const dataRazorpay = responseRazorpay.data;
 
-      console.log("Razorpay response data:", dataRazorpay);
-      console.log("Razorpay response data:", donationPageName);
-
       const options = {
-        key: "rzp_test_IUgMwcFACVruoS",
+        key: process.env.RAZORPAY_PUBIC_KEY,
         currency: dataRazorpay.payment.currency,
         amount: (totalDonationAmount * 100).toString(),
         order_id: dataRazorpay.order.order_payment_id,
@@ -239,11 +234,8 @@ export const DonationForm: React.FC<
         image: Logo,
         handler: async (response: any) => {
           const paymentReferenceId = response.razorpay_payment_id;
-          console.log("Payment Reference ID:", paymentReferenceId);
           const signatureId = response.razorpay_signature;
-          console.log("Razorpay Signature:", signatureId);
           const orderId = response.razorpay_order_id;
-          console.log("Razorpay Order ID:", orderId);
           await validation(paymentReferenceId, signatureId, orderId);
 
           setSubmitted(true);
@@ -269,14 +261,11 @@ export const DonationForm: React.FC<
     orderId: string,
   ) => {
     try {
-      await axios.post(
-        "https://87fb-103-39-130-94.ngrok-free.app/payment/success/",
-        {
-          orderId,
-          paymentReferenceId,
-          signatureId,
-        },
-      );
+      await axios.post(process.env.RAZORPAY_VALIDATION as string, {
+        orderId,
+        paymentReferenceId,
+        signatureId,
+      });
     } catch (error) {
       console.error("Error sending payment reference ID:", error);
     }
