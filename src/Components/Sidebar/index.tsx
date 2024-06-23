@@ -74,7 +74,7 @@ export const Sidebar = () => {
         <SidebarStyle isOpen={isOpen}>
           <nav>
             <StyledLink to={routes.home} onClick={handleClose}>
-              ISCKON
+              ISKCON
             </StyledLink>
             <hr />
             <SidebarAccordion

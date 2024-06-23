@@ -24,7 +24,10 @@ export const RecurriumDonation = () => {
     if (selectedOption === "option1") {
       return (
         <Table>
-          <Payment donationCategories={option1} />
+          <Payment
+            donationCategories={option1}
+            donationPageName={"Monthly Anna Daan"}
+          />
         </Table>
       );
     }
@@ -32,7 +35,10 @@ export const RecurriumDonation = () => {
     if (selectedOption === "option2") {
       return (
         <Table>
-          <Payment donationCategories={option2} />
+          <Payment
+            donationCategories={option2}
+            donationPageName={"Monthly Gau Seva"}
+          />
         </Table>
       );
     }
@@ -40,28 +46,40 @@ export const RecurriumDonation = () => {
     if (selectedOption === "option3") {
       return (
         <Table>
-          <Payment donationCategories={option3} />
+          <Payment
+            donationCategories={option3}
+            donationPageName={"Monthly Sadhu Bhojan"}
+          />
         </Table>
       );
     }
     if (selectedOption === "option4") {
       return (
         <Table>
-          <Payment donationCategories={option4} />
+          <Payment
+            donationCategories={option4}
+            donationPageName={"Monthly Vidya Daan"}
+          />
         </Table>
       );
     }
     if (selectedOption === "option5") {
       return (
         <Table>
-          <Payment donationCategories={option5} />
+          <Payment
+            donationCategories={option5}
+            donationPageName={"Monthly Youth Preaching Seva"}
+          />
         </Table>
       );
     }
     if (selectedOption === "option6") {
       return (
         <Table>
-          <Payment donationCategories={option6} />
+          <Payment
+            donationCategories={option6}
+            donationPageName={"Monthly temple support"}
+          />
         </Table>
       );
     }

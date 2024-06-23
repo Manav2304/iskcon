@@ -57,7 +57,7 @@ export const ToggleButton = styled.button`
 
 export const StyledLink = styled(Link)`
   display: block;
-  color: #fff;
+  color: #e1e8c3;
   text-decoration: none;
   flex-direction: column;
   align-items: center;

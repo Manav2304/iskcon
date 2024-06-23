@@ -11,7 +11,10 @@ export const JanmashtmiSeva: React.FC = () => {
         content={janmashtmiSeva}
       />
       <DonationTableWrapper>
-        <Payment donationCategories={donationCategories} />
+        <Payment
+          donationCategories={donationCategories}
+          donationPageName={"Janmashtmi Seva"}
+        />
       </DonationTableWrapper>
     </div>
   );

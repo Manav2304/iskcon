@@ -23,7 +23,10 @@ export const GitaDaan = () => {
     if (selectedOption === "option1") {
       return (
         <Table>
-          <Payment donationCategories={option1} />
+          <Payment
+            donationCategories={option1}
+            donationPageName={"Gita English"}
+          />
         </Table>
       );
     }
@@ -31,7 +34,10 @@ export const GitaDaan = () => {
     if (selectedOption === "option2") {
       return (
         <Table>
-          <Payment donationCategories={option2} />
+          <Payment
+            donationCategories={option2}
+            donationPageName={"Gita Hindi"}
+          />
         </Table>
       );
     }
@@ -39,14 +45,20 @@ export const GitaDaan = () => {
     if (selectedOption === "option3") {
       return (
         <Table>
-          <Payment donationCategories={option3} />
+          <Payment
+            donationCategories={option3}
+            donationPageName={"Gita Gujarati"}
+          />
         </Table>
       );
     }
     if (selectedOption === "option4") {
       return (
         <Table>
-          <Payment donationCategories={option4} />
+          <Payment
+            donationCategories={option4}
+            donationPageName={"Gita Marathi"}
+          />
         </Table>
       );
     }

@@ -1,4 +1,10 @@
-import React, { useState, ChangeEvent, FormEvent, useEffect } from "react";
+import React, {
+  useState,
+  ChangeEvent,
+  FormEvent,
+  useEffect,
+  useRef,
+} from "react";
 import axios from "axios";
 import { CloseButton, FormLabel } from "react-bootstrap";
 import {
@@ -6,6 +12,10 @@ import {
   PopupContent,
   FormInput,
   SubmitButton,
+  DonationformTitle,
+  FormRow,
+  FormGroup,
+  FormHeading,
 } from "./DonationFormStyle";
 import { Donation } from "./constant";
 import Logo from "../../../assets/images/iskcon-logo.png";
@@ -13,6 +23,7 @@ import Logo from "../../../assets/images/iskcon-logo.png";
 type DonationFormProps = {
   onClose: () => void;
   onSubmit: (formData: any, title: string) => void;
+  donationPageName: string;
 };
 
 function loadScript(src: string): Promise<boolean> {
@@ -34,16 +45,49 @@ export const DonationForm: React.FC<
     totalDonationAmount: number;
     selectedDonations: Donation[];
   }
-> = ({ onClose, onSubmit, totalDonationAmount, selectedDonations }) => {
+> = ({
+  onClose,
+  onSubmit,
+  totalDonationAmount,
+  selectedDonations,
+  donationPageName, // Receive the prop
+}) => {
   const [name, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [contactNumber, setContactNumber] = useState<string>("");
+  const [address, setAddress] = useState<string>("");
+  const [city, setCity] = useState<string>("");
+  const [pincode, setPincode] = useState<string>("");
+  const [state, setState] = useState<string>("");
+  const [panCard, setPanCard] = useState<string>("");
+  const [panCardError, setPanCardError] = useState<string>("");
+  const [pincodeError, setPincodeError] = useState<string>("");
+  const [nameError, setNameError] = useState<string>("");
+  const [cityError, setCityError] = useState<string>("");
+  const [stateError, setStateError] = useState<string>("");
+  const [addressError, setAddressError] = useState<string>("");
+  const [emailError, setEmailError] = useState<string>("");
+  const [contactNumberError, setContactNumberError] = useState<string>("");
   const [submitted, setSubmitted] = useState<boolean>(false);
+  const [isButtonClicked, setIsButtonClicked] = useState<boolean>(false);
+  const formRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Load Razorpay script when the component mounts
     loadRazorpayScript();
+    document.addEventListener("mousedown", handleClickOutside);
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.body.style.overflow = "auto";
+    };
   }, []);
+
+  const handleClickOutside = (event: MouseEvent) => {
+    if (formRef.current && !formRef.current.contains(event.target as Node)) {
+      onClose();
+    }
+  };
 
   const loadRazorpayScript = async () => {
     const existingScript = document.getElementById("razorpay-script");
@@ -60,126 +104,181 @@ export const DonationForm: React.FC<
   };
 
   const handleNameChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setName(event.target.value);
+    const { value } = event.target;
+    const nameRegex = /^[A-Za-z\s]+$/;
+    setName(value);
+
+    if (!value.trim()) {
+      setNameError("Name is required.");
+    } else if (!nameRegex.test(value)) {
+      setNameError("Enter Correct Name.");
+    } else {
+      setNameError("");
+    }
   };
 
   const handleEmailChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setEmail(event.target.value);
+    const { value } = event.target;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    setEmail(value);
+
+    if (!value.trim()) {
+      setEmailError("Email is required.");
+    } else if (!emailRegex.test(value)) {
+    } else {
+      setEmailError("");
+    }
   };
 
   const handleContactNumberChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setContactNumber(event.target.value);
+    const { value } = event.target;
+    const contactNumberRegex = /^[0-9]{10}$/;
+    setContactNumber(value);
+
+    if (!value.trim()) {
+      setContactNumberError("Contact number is required.");
+    } else if (!contactNumberRegex.test(value)) {
+      setContactNumberError("Enter valid Contact Number.");
+    } else {
+      setContactNumberError("");
+    }
+  };
+
+  const handleAddressChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const { value } = event.target;
+    setAddress(value);
+
+    if (!value.trim()) {
+      setAddressError("Address is required.");
+    }
+  };
+
+  const handleCityChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const { value } = event.target;
+    const cityRegex = /^[A-Za-z\s]+$/;
+    setCity(value);
+
+    if (!value.trim()) {
+      setCityError("City is required.");
+    } else if (!cityRegex.test(value)) {
+      setCityError("Enter valid City Name.");
+    } else {
+      setCityError("");
+    }
+  };
+
+  const handlePincodeChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const { value } = event.target;
+    const pincodeRegex = /^[1-9]{1}[0-9]{2}\s{0,1}[0-9]{3}$/;
+    setPincode(value);
+
+    if (!pincodeRegex.test(value)) {
+      setPincodeError("Invalid pincode.");
+    } else {
+      setPincodeError("");
+    }
+  };
+
+  const handleStateChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const { value } = event.target;
+    const stateRegex = /^[A-Za-z\s]+$/;
+    setState(value);
+
+    if (!value.trim()) {
+      setStateError("State is required.");
+    } else if (!stateRegex.test(value)) {
+      setStateError("Enter valid State Name.");
+    } else {
+      setStateError("");
+    }
+  };
+
+  const handlePanCardChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const { value } = event.target;
+    const panCardRegex = /^[A-Z]{5}[0-9]{4}[A-Z]{1}$/;
+    setPanCard(value);
+
+    if (!panCardRegex.test(value)) {
+      setPanCardError("Invalid PAN card.");
+    } else {
+      setPanCardError("");
+    }
   };
 
   const handleRazorpayAndSubmit = async () => {
     try {
-      // Fetch the order details from the backend
       const responseRazorpay = await axios.post(
-        "http://localhost:1337/orders",
+        "https://87fb-103-39-130-94.ngrok-free.app/pay/",
         {
+          name,
+          email,
+          selectedDonations,
           amount: totalDonationAmount,
+          panCard: totalDonationAmount > 50000 ? panCard : "NA",
+          address,
+          city,
+          pincode,
+          state,
+          donationPageName,
+          contactNumber,
         },
       );
 
       const dataRazorpay = responseRazorpay.data;
 
       console.log("Razorpay response data:", dataRazorpay);
+      console.log("Razorpay response data:", donationPageName);
 
       const options = {
         key: "rzp_test_IUgMwcFACVruoS",
-        currency: dataRazorpay.currency,
-        amount: dataRazorpay.amount.toString(),
-        order_id: dataRazorpay.order_id,
+        currency: dataRazorpay.payment.currency,
+        amount: (totalDonationAmount * 100).toString(),
+        order_id: dataRazorpay.order.order_payment_id,
         name: "Donation",
-        description: "Thank you for nothing. Please give us some money",
+        description: "Thank you for your donation",
         image: Logo,
         handler: async (response: any) => {
-          // Handle Razorpay success
-          alert("Transaction successful");
+          const paymentReferenceId = response.razorpay_payment_id;
+          console.log("Payment Reference ID:", paymentReferenceId);
+          const signatureId = response.razorpay_signature;
+          console.log("Razorpay Signature:", signatureId);
+          const orderId = response.razorpay_order_id;
+          console.log("Razorpay Order ID:", orderId);
+          await validation(paymentReferenceId, signatureId, orderId);
 
-          const { razorpay_payment_id, razorpay_order_id } = response;
-
-          const formData: {
-            name: string;
-            email: string;
-            contactNumber: string;
-            title: string;
-            amount: number;
-            selectedDonations: Donation[];
-            razorpayData: {
-              order_id: any;
-              payment_id: any;
-              status: string;
-            };
-            order_id: any; // Add this line to explicitly define order_id
-          } = {
-            name,
-            email,
-            contactNumber,
-            title: "Your Title Here",
-            amount: totalDonationAmount,
-            selectedDonations,
-            razorpayData: {
-              order_id: razorpay_order_id,
-              payment_id: razorpay_payment_id,
-              status: "success", // Assuming it's successful, adjust as needed
-              // Add other Razorpay data here if needed
-            },
-            order_id: razorpay_order_id, // Add this line to assign the order_id
-          };
-
-          try {
-            formData.order_id = razorpay_order_id;
-
-            const responseSave = await axios.post(
-              "http://localhost:1337/donate",
-              formData,
-              {
-                headers: {
-                  "Content-Type": "application/json",
-                },
-              },
-            );
-
-            if (responseSave.status === 200) {
-              console.log("Data saved successfully");
-
-              // Log the Razorpay Order ID and Payment ID from the backend response
-              console.log(
-                "Backend Razorpay Order ID:",
-                responseSave.data.orderId,
-              );
-              console.log(
-                "Backend Razorpay Payment ID:",
-                responseSave.data.paymentId,
-              );
-
-              setSubmitted(true);
-              window.location.href = "/";
-            } else {
-              console.error("Data could not be saved");
-            }
-          } catch (errorSave) {
-            console.error("Error while saving data:", errorSave);
-          } finally {
-            onClose();
-          }
+          setSubmitted(true);
+          onClose();
         },
         prefill: {
           name,
           email,
           phone_number: contactNumber,
         },
-        theme: {
-          color: "#ad0d0d",
-        },
       };
 
-      // Create Razorpay payment object and open it
-      const paymentObject: any = new window.Razorpay(options);
+      const paymentObject = new (window as any).Razorpay(options);
       paymentObject.open();
     } catch (error) {
-      console.error("Error:", error);
+      console.error("Error sending payment reference ID:", error);
+    }
+  };
+
+  const validation = async (
+    paymentReferenceId: string,
+    signatureId: string,
+    orderId: string,
+  ) => {
+    try {
+      await axios.post(
+        "https://87fb-103-39-130-94.ngrok-free.app/payment/success/",
+        {
+          orderId,
+          paymentReferenceId,
+          signatureId,
+        },
+      );
+    } catch (error) {
+      console.error("Error sending payment reference ID:", error);
     }
   };
 
@@ -187,33 +286,198 @@ export const DonationForm: React.FC<
     event.preventDefault();
 
     if (submitted) {
-      // If already submitted, return to avoid duplicate submissions
       return;
     }
 
+    if (totalDonationAmount > 50000) {
+      const panCardRegex = /^[A-Z]{5}[0-9]{4}[A-Z]{1}$/;
+      if (!panCard) {
+        setPanCardError("PAN card is required for donations over 50000.");
+        return;
+      }
+      if (!panCardRegex.test(panCard)) {
+        setPanCardError(
+          "Invalid PAN card format. It should be 5 letters, 4 numbers, and 1 letter.",
+        );
+        return;
+      }
+    }
+
+    const pincodeRegex = /^[1-9]{1}[0-9]{2}\s{0,1}[0-9]{3}$/;
+    if (!pincodeRegex.test(pincode)) {
+      setPincodeError("Invalid pincode format.");
+      return;
+    }
+
+    if (!name.trim()) {
+      setNameError("Name is required.");
+      return;
+    }
+
+    if (!address.trim()) {
+      setAddressError("Address is required.");
+      return;
+    }
+
+    if (address.length < 10) {
+      setAddressError("Address must be at least 10 characters long.");
+      return;
+    }
+
+    if (!city.trim()) {
+      setCityError("City is required.");
+      return;
+    }
+
+    if (!state.trim()) {
+      setStateError("State is required.");
+      return;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!email.trim()) {
+      setEmailError("Email is required.");
+      return;
+    } else if (!emailRegex.test(email)) {
+      return;
+    }
+
+    const contactNumberRegex = /^[0-9]{10}$/;
+    if (!contactNumber.trim()) {
+      setContactNumberError("Contact number is required.");
+      return;
+    } else if (!contactNumberRegex.test(contactNumber)) {
+      setContactNumberError("Contact number must be exactly 10 digits.");
+      return;
+    }
+    setIsButtonClicked(true);
     handleRazorpayAndSubmit();
   };
 
   return (
     <Popup>
-      <PopupContent>
-        <CloseButton onClick={onClose}></CloseButton>
-        <h2>Donation Information</h2>
+      <PopupContent
+        ref={formRef}
+        style={{ maxHeight: "70vh", overflowY: "auto" }}
+      >
+        <hr />
+        <FormHeading>
+          <CloseButton onClick={onClose}></CloseButton>
+          <DonationformTitle>
+            <span>Donation Information</span>
+          </DonationformTitle>
+        </FormHeading>
+        <hr />
         <form onSubmit={handleSubmit}>
-          <FormLabel>Name:</FormLabel>
-          <FormInput type="text" value={name} onChange={handleNameChange} />
+          <FormRow>
+            <FormGroup>
+              <FormLabel>Name:</FormLabel>
+              <FormInput
+                type="text"
+                value={name}
+                onChange={handleNameChange}
+                required
+              />
+              {nameError && <div style={{ color: "red" }}>{nameError}</div>}
+            </FormGroup>
+            <FormGroup>
+              <FormLabel>Email:</FormLabel>
+              <FormInput
+                type="email"
+                value={email}
+                onChange={handleEmailChange}
+                required
+              />
+              {emailError && <div style={{ color: "red" }}>{emailError}</div>}
+            </FormGroup>
+          </FormRow>
 
-          <FormLabel>Email:</FormLabel>
-          <FormInput type="email" value={email} onChange={handleEmailChange} />
+          <FormRow>
+            <FormGroup>
+              <FormLabel>Contact Number:</FormLabel>
+              <FormInput
+                type="tel"
+                value={contactNumber}
+                onChange={handleContactNumberChange}
+                required
+              />
+              {contactNumberError && (
+                <div style={{ color: "red" }}>{contactNumberError}</div>
+              )}
+            </FormGroup>
+            <FormGroup>
+              <FormLabel>Address:</FormLabel>
+              <FormInput
+                type="text"
+                value={address}
+                onChange={handleAddressChange}
+                required
+              />
+              {addressError && (
+                <div style={{ color: "red" }}>{addressError}</div>
+              )}
+            </FormGroup>
+          </FormRow>
 
-          <FormLabel>Contact Number:</FormLabel>
-          <FormInput
-            type="tel"
-            value={contactNumber}
-            onChange={handleContactNumberChange}
-          />
+          <FormRow>
+            <FormGroup>
+              <FormLabel>City:</FormLabel>
+              <FormInput
+                type="text"
+                value={city}
+                onChange={handleCityChange}
+                required
+              />
+              {cityError && <div style={{ color: "red" }}>{cityError}</div>}
+            </FormGroup>
+            <FormGroup>
+              <FormLabel>State:</FormLabel>
+              <FormInput
+                type="text"
+                value={state}
+                onChange={handleStateChange}
+                required
+              />
+              {stateError && <div style={{ color: "red" }}>{stateError}</div>}
+            </FormGroup>
+          </FormRow>
 
-          <SubmitButton type="submit">Submit</SubmitButton>
+          <FormRow>
+            <FormGroup>
+              <FormLabel>Pincode:</FormLabel>
+              <FormInput
+                type="text"
+                value={pincode}
+                onChange={handlePincodeChange}
+                required
+              />
+              {pincodeError && (
+                <div style={{ color: "red" }}>{pincodeError}</div>
+              )}
+            </FormGroup>
+
+            {totalDonationAmount > 50000 && (
+              <FormGroup>
+                <FormLabel>PAN Card:</FormLabel>
+                <FormInput
+                  type="text"
+                  value={panCard}
+                  onChange={handlePanCardChange}
+                  required
+                />
+                {panCardError && (
+                  <div style={{ color: "red" }}>{panCardError}</div>
+                )}
+              </FormGroup>
+            )}
+          </FormRow>
+
+          <SubmitButton
+            type="submit"
+            className={isButtonClicked ? "clicked" : ""}
+          >
+            Submit
+          </SubmitButton>
         </form>
       </PopupContent>
     </Popup>

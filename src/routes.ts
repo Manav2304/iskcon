@@ -26,7 +26,7 @@ export const routes = {
   givesrimadbhagavatam: "/donation-pages/give-srimad-bhagavatam",
   recurriumdonation: "/donation-pages/recurrium-donation",
   donationMainPage: "/donation-pages/donation-main-page",
-  janmashtmiSeva: "/donation-pages/janmashtmi-seva",
+  // janmashtmiSeva: "/donation-pages/janmashtmi-seva",
   sadhubhojan: "/donation-pages/sadhu-bhojan",
   radharaniKitchenSeva: "/donation-pages/radharani-kitchen-seva",
   monthlySeva: "/donation-pages/monthly-radharani-kithcen-seva",

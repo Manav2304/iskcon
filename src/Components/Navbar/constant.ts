@@ -52,7 +52,7 @@ export const dropdownDonationPagesInfo = [
   { title: "Vidya Daan", path: routes.vidyadaan },
   { title: "Give-Shrimad-Bhagavatam", path: routes.givesrimadbhagavatam },
   { title: "recurrium donation", path: routes.recurriumdonation },
-  { title: "Janmashtmi-Seva", path: routes.janmashtmiSeva },
+  // { title: "Janmashtmi-Seva", path: routes.janmashtmiSeva },
   { title: "Sadhu-Bhojan", path: routes.sadhubhojan },
   { title: "Radharani-Kitchen-Seva", path: routes.radharaniKitchenSeva },
   { title: "Gita-Daan", path: routes.gitaDaan },

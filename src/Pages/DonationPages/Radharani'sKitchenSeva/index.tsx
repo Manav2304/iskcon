@@ -11,7 +11,10 @@ export const RadharaniKitchenSeva: React.FC = () => {
         content={radharaniKitchenSeva}
       />
       <DonationTableWrapper>
-        <Payment donationCategories={donationCategories} />
+        <Payment
+          donationCategories={donationCategories}
+          donationPageName={"RadharaniKithchenSeva"}
+        />
       </DonationTableWrapper>
     </div>
   );

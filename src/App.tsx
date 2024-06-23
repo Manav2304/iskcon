@@ -27,8 +27,6 @@ import { Sidebar } from "./Components/Sidebar";
 import { VisitUs } from "./Pages/VisitUs";
 import { AnnaDaan } from "./Pages/DonationPages/AnnaDaan";
 import { GauSeva } from "./Pages/DonationPages/GauSeva";
-// import { DonationMainPage } from "./Pages/DonationPages/DonationMainPage";
-import { JanmashtmiSeva } from "./Pages/DonationPages/JanmashtamiSeva";
 import { RadharaniKitchenSeva } from "./Pages/DonationPages/Radharani'sKitchenSeva";
 import { SadhuBhojan } from "./Pages/DonationPages/SadhuBhojan";
 import { RecurriumDonation } from "./Pages/DonationPages/RecurriumDonation";
@@ -142,17 +140,6 @@ export const App: React.FunctionComponent = () => {
           />
           <Route caseSensitive path={routes.gauSeva} element={<GauSeva />} />
 
-          {/* <Route
-            caseSensitive
-            path={routes.donationMainPage}
-            element={<DonationMainPage />}
-          /> */}
-
-          <Route
-            caseSensitive
-            path={routes.janmashtmiSeva}
-            element={<JanmashtmiSeva />}
-          />
           <Route
             caseSensitive
             path={routes.sadhubhojan}

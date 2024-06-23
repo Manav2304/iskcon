@@ -14,16 +14,14 @@ import {
 } from "./style";
 import { paragraphs } from "./constant";
 import titlebBaseImage from "../../../assets/images/title-base.png";
-import { donationItems } from "./constant"; 
+import { donationItems } from "./constant";
 
 export const DonationMainPage = () => {
   return (
     <div>
       <PageWrapper>
         <div>
-          <HeadingStyle>
-            Donate
-          </HeadingStyle>
+          <HeadingStyle>Donate</HeadingStyle>
           <ImageTitle src={titlebBaseImage} alt="Title Image" />
           <TextStyle>
             <p>{paragraphs}</p>

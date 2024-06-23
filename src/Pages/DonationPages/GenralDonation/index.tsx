@@ -24,7 +24,7 @@ export const GeneralDonation = () => {
     if (selectedOption === "option1") {
       return (
         <Table>
-          <Payment donationCategories={option1} />
+          <Payment donationCategories={option1} donationPageName={"AnnaDaan"} />
         </Table>
       );
     }
@@ -32,7 +32,10 @@ export const GeneralDonation = () => {
     if (selectedOption === "option2") {
       return (
         <Table>
-          <Payment donationCategories={option2} />
+          <Payment
+            donationCategories={option2}
+            donationPageName={"Care for Cow"}
+          />
         </Table>
       );
     }
@@ -40,28 +43,40 @@ export const GeneralDonation = () => {
     if (selectedOption === "option3") {
       return (
         <Table>
-          <Payment donationCategories={option3} />
+          <Payment
+            donationCategories={option3}
+            donationPageName={"Daily Deity Seva"}
+          />
         </Table>
       );
     }
     if (selectedOption === "option4") {
       return (
         <Table>
-          <Payment donationCategories={option4} />
+          <Payment
+            donationCategories={option4}
+            donationPageName={"Sadhu Bhojan"}
+          />
         </Table>
       );
     }
     if (selectedOption === "option5") {
       return (
         <Table>
-          <Payment donationCategories={option5} />
+          <Payment
+            donationCategories={option5}
+            donationPageName={"Daily Gau Seva"}
+          />
         </Table>
       );
     }
     if (selectedOption === "option6") {
       return (
         <Table>
-          <Payment donationCategories={option6} />
+          <Payment
+            donationCategories={option6}
+            donationPageName={"Ghee Lamp Seva"}
+          />
         </Table>
       );
     }

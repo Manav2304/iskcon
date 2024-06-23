@@ -25,7 +25,10 @@ export const MonthlySeva = () => {
     if (selectedOption === "option1") {
       return (
         <Table>
-          <Payment donationCategories={option1} />
+          <Payment
+            donationCategories={option1}
+            donationPageName={"Monthly Deity Seva"}
+          />
         </Table>
       );
     }
@@ -33,7 +36,10 @@ export const MonthlySeva = () => {
     if (selectedOption === "option2") {
       return (
         <Table>
-          <Payment donationCategories={option2} />
+          <Payment
+            donationCategories={option2}
+            donationPageName={"Monthly Fruits Seva"}
+          />
         </Table>
       );
     }
@@ -41,28 +47,40 @@ export const MonthlySeva = () => {
     if (selectedOption === "option3") {
       return (
         <Table>
-          <Payment donationCategories={option3} />
+          <Payment
+            donationCategories={option3}
+            donationPageName={"Monthly Dry Fruits Seva"}
+          />
         </Table>
       );
     }
     if (selectedOption === "option4") {
       return (
         <Table>
-          <Payment donationCategories={option4} />
+          <Payment
+            donationCategories={option4}
+            donationPageName={"Monthly Ghee Seva"}
+          />
         </Table>
       );
     }
     if (selectedOption === "option5") {
       return (
         <Table>
-          <Payment donationCategories={option5} />
+          <Payment
+            donationCategories={option5}
+            donationPageName={"Monthly Milk Seva"}
+          />
         </Table>
       );
     }
     if (selectedOption === "option6") {
       return (
         <Table>
-          <Payment donationCategories={option6} />
+          <Payment
+            donationCategories={option6}
+            donationPageName={"Monthly Vegetable Seva"}
+          />
         </Table>
       );
     }

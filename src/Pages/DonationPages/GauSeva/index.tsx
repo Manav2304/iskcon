@@ -15,7 +15,10 @@ export const GauSeva = () => {
     if (selectedOption === "option1") {
       return (
         <Table>
-          <Payment donationCategories={option1} />
+          <Payment
+            donationCategories={option1}
+            donationPageName={"Care for Cow"}
+          />
         </Table>
       );
     }
@@ -23,7 +26,10 @@ export const GauSeva = () => {
     if (selectedOption === "option2") {
       return (
         <Table>
-          <Payment donationCategories={option2} />
+          <Payment
+            donationCategories={option2}
+            donationPageName={"Daily Gau Seva"}
+          />
         </Table>
       );
     }
@@ -31,7 +37,7 @@ export const GauSeva = () => {
     if (selectedOption === "option3") {
       return (
         <Table>
-          <Payment donationCategories={option3} />
+          <Payment donationCategories={option3} donationPageName={"Gau Puja"} />
         </Table>
       );
     }

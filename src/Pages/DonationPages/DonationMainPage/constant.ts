@@ -5,7 +5,7 @@ import { devoteeKitchenImages } from "../../Services/DevoteeKitchen/constant";
 // import { guestHouse } from "../../Contact/constant";
 
 export const paragraphs = [
-   "As said in Bhagavad Gita 18.5- acts of sacrifice, charity and penance are not to be given up; they must be performed. Indeed, sacrifice, charity and penance purify even the great souls.",
+  "As said in Bhagavad Gita 18.5- acts of sacrifice, charity and penance are not to be given up; they must be performed. Indeed, sacrifice, charity and penance purify even the great souls.",
 ];
 
 export const donationItems = [

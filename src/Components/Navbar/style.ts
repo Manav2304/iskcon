@@ -118,7 +118,7 @@ export const IconsStyle = styled.a`
 
 export const MarqueeWrapper = styled(Marquee)`
   color: #fff;
-  background-color: #ad0d0d;
+  background-color: red;
   font-family: Overlock-Regular, cursive, sans-serif;
   height: 75px;
   width: 85%;

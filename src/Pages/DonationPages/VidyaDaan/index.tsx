@@ -16,7 +16,10 @@ export const VidyaDaan = () => {
     if (selectedOption === "option1") {
       return (
         <Table>
-          <Payment donationCategories={option1} />
+          <Payment
+            donationCategories={option1}
+            donationPageName={"Sponsor Bhagavatam"}
+          />
         </Table>
       );
     }
@@ -24,7 +27,10 @@ export const VidyaDaan = () => {
     if (selectedOption === "option2") {
       return (
         <Table>
-          <Payment donationCategories={option2} />
+          <Payment
+            donationCategories={option2}
+            donationPageName={"Sponsor Bhagavad Gita"}
+          />
         </Table>
       );
     }
@@ -32,7 +38,10 @@ export const VidyaDaan = () => {
     if (selectedOption === "option3") {
       return (
         <Table>
-          <Payment donationCategories={option3} />
+          <Payment
+            donationCategories={option3}
+            donationPageName={"General Vidya Daan"}
+          />
         </Table>
       );
     }

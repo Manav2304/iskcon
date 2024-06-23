@@ -21,7 +21,7 @@ export const dropdownDonationInfo = [
   { name: "Vidya-Daan", url: routes.vidyadaan },
   { name: "Give-Srimad-donation ", url: routes.givesrimadbhagavatam },
   { name: "Recurrium-Donation", url: routes.recurriumdonation },
-  { name: "Janmashtmi-Seva", url: routes.janmashtmiSeva },
+  // { name: "Janmashtmi-Seva", url: routes.janmashtmiSeva },
   { name: "Sadhu-Bhojan", url: routes.sadhubhojan },
   { name: "Radharani-Kitchen-Seva", url: routes.radharaniKitchenSeva },
   { name: "Gita-Daan", url: routes.gitaDaan },

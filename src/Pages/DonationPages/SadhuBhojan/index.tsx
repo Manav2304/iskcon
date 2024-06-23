@@ -8,7 +8,10 @@ export const SadhuBhojan: React.FC = () => {
     <div>
       <DonationPagesDescription title="Sadhu Seva" content={sadhuBhojan} />
       <DonationTableWrapper>
-        <Payment donationCategories={donationCategories} />
+        <Payment
+          donationCategories={donationCategories}
+          donationPageName={"SadhuBhojan"}
+        />
       </DonationTableWrapper>
     </div>
   );
