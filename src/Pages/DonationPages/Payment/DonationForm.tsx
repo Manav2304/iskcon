@@ -19,6 +19,7 @@ import {
 } from "./DonationFormStyle";
 import { Donation } from "./constant";
 import Logo from "../../../assets/images/iskcon-logo.png";
+import { useNavigate } from "react-router-dom";
 
 type DonationFormProps = {
   onClose: () => void;
@@ -50,7 +51,7 @@ export const DonationForm: React.FC<
   onSubmit,
   totalDonationAmount,
   selectedDonations,
-  donationPageName, // Receive the prop
+  donationPageName,
 }) => {
   const [name, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
@@ -60,6 +61,7 @@ export const DonationForm: React.FC<
   const [pincode, setPincode] = useState<string>("");
   const [state, setState] = useState<string>("");
   const [panCard, setPanCard] = useState<string>("");
+  const [send80GReceipt, setSend80GReceipt] = useState<boolean>(false);
   const [panCardError, setPanCardError] = useState<string>("");
   const [pincodeError, setPincodeError] = useState<string>("");
   const [nameError, setNameError] = useState<string>("");
@@ -70,6 +72,8 @@ export const DonationForm: React.FC<
   const [contactNumberError, setContactNumberError] = useState<string>("");
   const [submitted, setSubmitted] = useState<boolean>(false);
   const [isButtonClicked, setIsButtonClicked] = useState<boolean>(false);
+
+  const navigate = useNavigate();
   const formRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -93,7 +97,9 @@ export const DonationForm: React.FC<
     const existingScript = document.getElementById("razorpay-script");
 
     if (!existingScript) {
-      const res = await loadScript(process.env.RAZORPAY_LOAD_SCRIPT as string);
+      const res = await loadScript(
+        "https://checkout.razorpay.com/v1/checkout.js",
+      );
 
       if (!res) {
         alert("Razorpay SDK failed to load. Are you online?");
@@ -203,16 +209,20 @@ export const DonationForm: React.FC<
     }
   };
 
+  const handle80GReceiptChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setSend80GReceipt(event.target.checked);
+  };
+
   const handleRazorpayAndSubmit = async () => {
     try {
       const responseRazorpay = await axios.post(
-        process.env.RAZORPAY_RESPONSE as string,
+        "https://app.iskconvvnagar.com/pay/",
         {
           name,
           email,
           selectedDonations,
           amount: totalDonationAmount,
-          panCard: totalDonationAmount > 50000 ? panCard : "NA",
+          panCard: send80GReceipt ? panCard : "NA",
           address,
           city,
           pincode,
@@ -225,7 +235,7 @@ export const DonationForm: React.FC<
       const dataRazorpay = responseRazorpay.data;
 
       const options = {
-        key: process.env.RAZORPAY_PUBIC_KEY,
+        key: process.env.REACT_APP_RAZORPAY_PUBIC_KEY,
         currency: dataRazorpay.payment.currency,
         amount: (totalDonationAmount * 100).toString(),
         order_id: dataRazorpay.order.order_payment_id,
@@ -239,6 +249,16 @@ export const DonationForm: React.FC<
           await validation(paymentReferenceId, signatureId, orderId);
 
           setSubmitted(true);
+
+          navigate("/donation-pages/payment/success", {
+            state: {
+              paymentReferenceId,
+              totalDonationAmount,
+              selectedDonations,
+              name,
+              donationPageName,
+            },
+          });
           onClose();
         },
         prefill: {
@@ -261,7 +281,7 @@ export const DonationForm: React.FC<
     orderId: string,
   ) => {
     try {
-      await axios.post(process.env.RAZORPAY_VALIDATION as string, {
+      await axios.post("https://app.iskconvvnagar.com/payment/success/", {
         orderId,
         paymentReferenceId,
         signatureId,
@@ -278,10 +298,12 @@ export const DonationForm: React.FC<
       return;
     }
 
-    if (totalDonationAmount > 50000) {
+    if (totalDonationAmount > 49999 || send80GReceipt) {
       const panCardRegex = /^[A-Z]{5}[0-9]{4}[A-Z]{1}$/;
       if (!panCard) {
-        setPanCardError("PAN card is required for donations over 50000.");
+        setPanCardError(
+          "PAN card is required for donations over 50000 or if 80G receipt is requested.",
+        );
         return;
       }
       if (!panCardRegex.test(panCard)) {
@@ -444,8 +466,23 @@ export const DonationForm: React.FC<
                 <div style={{ color: "red" }}>{pincodeError}</div>
               )}
             </FormGroup>
+          </FormRow>
 
-            {totalDonationAmount > 50000 && (
+          <FormRow>
+            <FormGroup>
+              <FormLabel>
+                <input
+                  type="checkbox"
+                  checked={send80GReceipt}
+                  onChange={handle80GReceiptChange}
+                />
+                Send me an 80G receipt
+              </FormLabel>
+            </FormGroup>
+          </FormRow>
+
+          {(send80GReceipt || totalDonationAmount > 50000) && (
+            <FormRow>
               <FormGroup>
                 <FormLabel>PAN Card:</FormLabel>
                 <FormInput
@@ -458,8 +495,8 @@ export const DonationForm: React.FC<
                   <div style={{ color: "red" }}>{panCardError}</div>
                 )}
               </FormGroup>
-            )}
-          </FormRow>
+            </FormRow>
+          )}
 
           <SubmitButton
             type="submit"

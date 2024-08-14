@@ -6,7 +6,10 @@ import { DonationTableWrapper } from "./style";
 export const AnnaDaan: React.FC = () => {
   return (
     <div>
-      <DonationPagesDescription title="Anna Daan" content={annaDaan} />
+      <DonationPagesDescription
+        title="Food for Life (Anna-Daan)"
+        content={annaDaan}
+      />
       <DonationTableWrapper>
         <Payment
           donationCategories={donationCategories}

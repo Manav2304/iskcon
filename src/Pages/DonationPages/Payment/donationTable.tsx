@@ -31,7 +31,6 @@ import {
   maintitle,
   subtitle2,
   subtitle1,
-  yesBankAccountInfo,
 } from "./constant";
 import BarCode from "../../../assets/images/barcode.png";
 import { BankInfo } from "./CopiedTableRow";
@@ -79,9 +78,7 @@ export const Payment: React.FC<PaymentProps> = ({
     setIsDonationFormVisible(false);
   };
 
-  const handleSubmitDonationForm = (formData: any) => {
-    console.log("Form Data:", formData);
-  };
+  const handleSubmitDonationForm = (formData: any) => {};
 
   const formatAmountInINR = (amount: number | bigint) => {
     const formattedAmount = new Intl.NumberFormat("en-IN", {
@@ -94,21 +91,13 @@ export const Payment: React.FC<PaymentProps> = ({
 
   const handleDonateButtonClick = () => {
     setIsDonationFormVisible(true);
-    if (totalDonationAmount < 20) {
-      alert("The donation amount must be more than 20.");
+    if (totalDonationAmount < 19) {
+      alert("Please note that the minimum donation amount is 20₹");
       setIsDonationFormVisible(false);
     } else {
       setIsDonationFormVisible(true);
-      console.log("Donation processed:", totalDonationAmount);
     }
   };
-
-  React.useEffect(() => {
-    console.log(
-      "Selected Donations:",
-      selectedDonations.map((donation) => donation.title),
-    );
-  }, [selectedDonations]);
 
   return (
     <>
@@ -198,19 +187,11 @@ export const Payment: React.FC<PaymentProps> = ({
       )}
 
       <br />
-      <Span>Donate via NEFT/RTGS/UPI</Span>
+      <Span>Donate via NEFT/RTGS/UPI (Gupt Daan)</Span>
       <br />
       <Span1>Only for Indian Citizen/Indian Passport Holder</Span1>
 
       <PageWrapper>
-        <CardStyle>
-          <CardContentStyle>
-            <TypoGraphyMain>Donate via NEFT/RTGS</TypoGraphyMain>
-            <TableWrapper>
-              <BankInfo accountInfo={yesBankAccountInfo} />
-            </TableWrapper>
-          </CardContentStyle>
-        </CardStyle>
         <CardStyle>
           <CardContentStyle>
             <TypoGraphyMain>Donate via NEFT/RTGS</TypoGraphyMain>

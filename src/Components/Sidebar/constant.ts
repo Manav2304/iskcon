@@ -13,7 +13,7 @@ export const dropdownServicesInfo = [
 ];
 
 export const dropdownDonationInfo = [
-  { name: "Annna-Daan", url: routes.annaDaan },
+  { name: "Food for Life (Annna-Daan)", url: routes.annaDaan },
   { name: "E-Hundi", url: routes.ehindu },
   { name: "General-Donation", url: routes.generaldonation },
   { name: "Gau Seva", url: routes.gauSeva },

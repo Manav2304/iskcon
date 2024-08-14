@@ -37,6 +37,7 @@ import { GeneralDonation } from "./Pages/DonationPages/GenralDonation";
 import { MonthlySeva } from "./Pages/DonationPages/MonthlyRadharaniKithcenSeva";
 import { GitaDaan } from "./Pages/DonationPages/GitaDaan";
 import { DeitySeva } from "./Pages/DonationPages/DeitySeva";
+import { SuccessPage } from "./Pages/DonationPages/Payment/paymentMsg";
 
 export const App: React.FunctionComponent = () => {
   return (
@@ -156,6 +157,11 @@ export const App: React.FunctionComponent = () => {
             caseSensitive
             path={routes.deityseva}
             element={<DeitySeva />}
+          />
+          <Route
+            caseSensitive
+            path={routes.paymentMsg}
+            element={<SuccessPage />}
           />
         </Routes>
 

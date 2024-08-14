@@ -692,7 +692,7 @@ export const CopyImg = styled.img`
 
   @media (${devices.tablet}) {
     margin-top: -503px;
-    margin-left: 415px;
+    margin-left: 530px;
     height: 20px;
   }
 
@@ -709,44 +709,38 @@ export const CopyImg = styled.img`
   }
 
   @media (${devices.laptop}) {
-    margin-top: -557px;
-    margin-left: 235px;
+    margin-top: -475px;
+    margin-left: 400px;
     height: 20px;
   }
 
   @media (min-width: 1105px) {
-    margin-top: -561px;
-    margin-left: 263px;
-    height: 20px;
-  }
-
-  @media (min-width: 1108px) {
-    margin-top: -561px;
-    margin-left: 263px;
+    margin-top: -475px;
+    margin-left: 445px;
     height: 20px;
   }
 
   @media (min-width: 1172px) {
-    margin-top: -520px;
-    margin-left: 285px;
+    margin-top: -475px;
+    margin-left: 460px;
     height: 20px;
   }
 
   @media (min-width: 1258px) {
-    margin-top: -480px;
-    margin-left: 305px;
+    margin-top: -475px;
+    margin-left: 515px;
     height: 20px;
   }
 
   @media (min-width: 1274px) {
-    margin-top: -480px;
-    margin-left: 305px;
+    margin-top: -475px;
+    margin-left: 520px;
     height: 20px;
   }
 
   @media (min-width: 1337px) {
-    margin-top: -480px;
-    margin-left: 341px;
+    margin-top: -475px;
+    margin-left: 550px;
     height: 20px;
   }
 
@@ -757,44 +751,56 @@ export const CopyImg = styled.img`
   }
 
   @media (${devices.laptopL}) {
-    margin-top: -525px;
-    margin-left: 275px;
+    margin-top: -475px;
+    margin-left: 470px;
     height: 20px;
   }
 
   @media (min-width: 1500px) {
-    margin-top: -489px;
-    margin-left: 300px;
+    margin-top: -480px;
+    margin-left: 510px;
     height: 20px;
   }
 
   @media (min-width: 1602px) {
-    margin-top: -489px;
-    margin-left: 309px;
+    margin-top: -480px;
+    margin-left: 550px;
     height: 20px;
   }
 
   @media (min-width: 1665px) {
-    margin-top: -500px;
-    margin-left: 315px;
+    margin-top: -443px;
+    margin-left: 594px;
+    height: 20px;
+  }
+
+  @media (min-width: 1800px) {
+    margin-top: -443px;
+    margin-left: 650px;
     height: 20px;
   }
 
   @media (min-width: 2000px) {
-    margin-top: -485px;
-    margin-left: 444px;
+    margin-top: -445px;
+    margin-left: 700px;
+    height: 20px;
+  }
+
+  @media (min-width: 2100px) {
+    margin-top: -445px;
+    margin-left: 785px;
     height: 20px;
   }
 
   @media (min-width: 2221px) {
-    margin-top: -500px;
-    margin-left: 455px;
+    margin-top: -445px;
+    margin-left: 800px;
     height: 20px;
   }
 
   @media (${devices.desktop}) {
-    margin-top: -443px;
-    margin-left: 627px;
+    margin-top: -440px;
+    margin-left: 1000px;
     height: 20px;
   }
 `;
@@ -841,7 +847,21 @@ export const BarcodeImgStyle = styled(CardMedia)`
   @media (${devices.laptop}) {
     max-width: 213px; /* Set a maximum width for barcode */
     height: 212px;
-    margin-left: 1px;
+    margin-left: 76px;
+    margin-top: 20px;
+  }
+
+  @media (min-width: 1200px) {
+    max-width: 213px; /* Set a maximum width for barcode */
+    height: 212px;
+    margin-left: 125px;
+    margin-top: 20px;
+  }
+
+  @media (min-width: 1366px) {
+    max-width: 213px; /* Set a maximum width for barcode */
+    height: 212px;
+    margin-left: 155px;
     margin-top: 20px;
   }
 
@@ -855,14 +875,56 @@ export const BarcodeImgStyle = styled(CardMedia)`
   @media (${devices.laptopL}) {
     max-width: 213px; /* Set a maximum width for barcode */
     height: 212px;
-    margin-left: 30px;
+    margin-left: 130px;
+    margin-top: 30px;
+  }
+
+  @media (min-width: 1600px) {
+    max-width: 213px; /* Set a maximum width for barcode */
+    height: 212px;
+    margin-left: 155px;
+    margin-top: 30px;
+  }
+
+  @media (min-width: 1700px) {
+    max-width: 213px; /* Set a maximum width for barcode */
+    height: 212px;
+    margin-left: 185px;
+    margin-top: 30px;
+  }
+
+  @media (min-width: 1875px) {
+    max-width: 213px; /* Set a maximum width for barcode */
+    height: 212px;
+    margin-left: 217px;
+    margin-top: 30px;
+  }
+
+  @media (min-width: 2000px) {
+    max-width: 213px; /* Set a maximum width for barcode */
+    height: 212px;
+    margin-left: 265px;
+    margin-top: 30px;
+  }
+
+  @media (min-width: 2100px) {
+    max-width: 213px; /* Set a maximum width for barcode */
+    height: 212px;
+    margin-left: 290px;
+    margin-top: 30px;
+  }
+
+  @media (min-width: 2100px) {
+    max-width: 213px; /* Set a maximum width for barcode */
+    height: 212px;
+    margin-left: 320px;
     margin-top: 30px;
   }
 
   @media (${devices.desktop}) {
     max-width: 213px; /* Set a maximum width for barcode */
     height: 212px;
-    margin-left: 200px;
+    margin-left: 400px;
     margin-top: 30px;
   }
 `;
@@ -1115,5 +1177,98 @@ export const Span2 = styled.span`
   @media (${devices.desktop}) {
     font-size: 3rem;
     margin-left: -736px;
+  }
+`;
+
+export const SuccessContainer = styled.div`
+  padding: 20px;
+  text-align: center;
+  background-color: #fff;
+  margin: 20px auto;
+  max-width: 600px;
+  box-shadow: 0 4px 8px rgb(0 0 0 / 10%);
+  border-radius: 10px;
+`;
+
+export const SuccessTitle = styled.h1`
+  color: #28a745; /* A brighter green for better visibility */
+  margin-bottom: 20px;
+  font-size: 2em; /* Increase the font size for the title */
+  margin-top: 50px;
+
+  @media (${devices.laptop}) {
+    margin-top: 90px;
+  }
+
+  @media (${devices.desktop}) {
+    margin-top: 105px;
+  }
+`;
+
+export const SuccessParagraph = styled.p`
+  margin: 10px 0;
+  font-size: 1.2em; /* Slightly larger text for better readability */
+  color: #333; /* Darker text color for better contrast */
+`;
+
+export const DonationTable = styled.table`
+  width: 100%;
+  margin: 20px 0;
+  border-collapse: collapse;
+  background-color: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgb(0 0 0 / 10%); /* Add a subtle shadow to the table */
+`;
+
+export const TableHeaderForm = styled.th`
+  border: 1px solid #ddd;
+  padding: 12px;
+  background-color: #f8f9fa; /* A lighter background for headers */
+  text-align: left;
+  font-weight: bold;
+  color: #495057; /* Darker color for better contrast */
+`;
+
+export const TableRowForm = styled.tr`
+  &:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+
+  &:hover {
+    background-color: #f1f1f1; /* Highlight row on hover */
+  }
+`;
+
+export const TableCellForm = styled.td`
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: left;
+  color: #212529; /* Darker text color for better readability */
+  font-size: 1em; /* Consistent font size with paragraph */
+
+  &:first-child {
+    font-weight: bold;
+    background-color: #f2f2f2;
+  }
+`;
+
+export const ButtonForm = styled.button`
+  padding: 10px 20px;
+  font-size: 1em;
+  color: #fff;
+  background-color: rgb(153 102 51); /* Primary button color */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+
+  &:hover {
+    background-color: #0056b3; /* Darker color on hover */
+  }
+
+  &:focus {
+    outline: none; /* Remove outline on focus */
+    box-shadow: 0 0 0 2px rgb(38 143 255 / 50%); /* Add a focus shadow */
   }
 `;

@@ -10,7 +10,7 @@ export type Donation = {
 };
 
 export const maintitle = ["Donate through UPI (ISKCON)"];
-export const subtitle1 = ["ISKCONVVNAGAR@ICICI "];
+export const subtitle1 = ["iskconvidyanagar@icici"];
 export const subtitle2 = [
   "Check your UPI limit with your bank. Max. Limit 1 lac per day",
 ];

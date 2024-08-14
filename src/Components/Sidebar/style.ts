@@ -184,7 +184,7 @@ export const AccordionItemButton = styled(AccordionButton)`
   outline: none;
   background-color: transparent;
   border: none;
-  color: #fff;
+  color: rgb(225 232 195);
   font-size: 20px;
   font-weight: bold;
   text-align: left;
