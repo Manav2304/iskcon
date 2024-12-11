@@ -26,7 +26,7 @@ import {
 } from "./style";
 import { routes } from "../../routes";
 import { StyledLink } from "../Navbar/style";
-import { AdsComponent } from "../GoogleAds/AdsComponent";
+// import { AdsComponent } from "../GoogleAds/AdsComponent";
 
 export const Footer = () => {
   return (
@@ -119,7 +119,7 @@ export const Footer = () => {
           © 2021 ISKCON. All rights reserved.
         </CopyRights>
       </MDBFooter>
-      <AdsComponent dataAdSlot={"7737287509"} />
+      {/* <AdsComponent dataAdSlot={"7737287509"} /> */}
     </BgColor>
   );
 };
